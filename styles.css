@@ -157,6 +157,7 @@ button:hover {
 
 @media (max-width: 780px) {
   .calculator {
+    height: 85%;
     width: 95%;
   }
 }
