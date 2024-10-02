@@ -74,8 +74,8 @@ clearDisplay();
 
 // handling the numbers and operators.
 const operation = () => {
-  const splitExpression = displayvalue.split(/[\*\-\+]/);
-  const getoperator = displayvalue.match(/[\*\-\+]/);
+  const splitExpression = displayvalue.split(/[\*\-\+\/]/);
+  const getoperator = displayvalue.match(/[\*\-\+\/]/);
   console.log(getoperator);
   console.log(splitExpression);
 
