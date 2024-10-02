@@ -84,7 +84,7 @@ const operation = () => {
     getoperator.length !== 1 ||
     splitExpression.length > 2
   ) {
-    display.textContent = "Please enter a valid expression";
+    display.textContent = "Please enter only one number. Before an operator and after an operator";
   } else {
     numberOne = parseFloat(splitExpression[0]);
     numberTwo = parseFloat(splitExpression[1]);
@@ -130,9 +130,9 @@ const operation = () => {
     }
   }
 
-  if (isNaN(numberOne) || isNaN(numberTwo)) {
-    display.textContent = `Please enter only one number. Before an operator and after an operator`;
-  }
+  // if (isNaN(numberOne) || isNaN(numberTwo)) {
+  //   display.textContent = `Please enter only one number. Before an operator and after an operator`;
+  // }
 };
 
 operate.addEventListener("click", operation);
