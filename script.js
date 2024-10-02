@@ -7,10 +7,10 @@ const operate = document.getElementById("equal");
 
 // Variables
 let displayvalue = "";
-let numberOne;
-let numberTwo;
-let operator;
-
+let numberOne = null;
+let numberTwo = null;
+let operator = null;
+let result = null;
 // Function to change themes.
 changeTheme.addEventListener("click", () => {
   let isChanged = false;
@@ -59,13 +59,18 @@ digits.forEach((button) => {
 });
 
 // Resetting values
-clearScreen.addEventListener("click", () => {
-  displayvalue = "";
-  numberOne = "";
-  numberTwo = "";
-  operator = "";
-  display.textContent = "";
-});
+const clearDisplay = () => {
+  clearScreen.addEventListener("click", () => {
+    displayvalue = "";
+    numberOne = null;
+    numberTwo = null;
+    operator = null;
+    result = null;
+    display.textContent = "";
+  });
+};
+
+clearDisplay();
 
 // handling the numbers and operators.
 const operation = () => {
@@ -74,15 +79,59 @@ const operation = () => {
   console.log(getoperator);
   console.log(splitExpression);
 
-  if(splitExpression.length < 2 || getoperator.length !== 1 || splitExpression.length > 2) {
+  if (
+    splitExpression.length < 2 ||
+    getoperator.length !== 1 ||
+    splitExpression.length > 2
+  ) {
     display.textContent = "Please enter a valid expression";
   } else {
-    numberOne = splitExpression[0];
-    numberTwo = splitExpression[1];
+    numberOne = parseFloat(splitExpression[0]);
+    numberTwo = parseFloat(splitExpression[1]);
+
+    if (result !== null) {
+      numberOne = result;
+    } else {
+      numberOne = parseFloat(splitExpression[0]);
+    }
+
+    switch (getoperator[0]) {
+      case "+":
+        result = addNumbers(numberOne, numberTwo);
+        display.textContent = `${result}`;
+        displayvalue = `${result}`;
+        break;
+
+      case "-":
+        result = subtractNumbers(numberOne, numberTwo);
+        display.textContent = `${result}`;
+        displayvalue = `${result}`;
+        break;
+
+      case "*":
+        result = multiplyNumber(numberOne, numberTwo);
+        display.textContent = `${result}`;
+        displayvalue = `${result}`;
+        break;
+
+      case "/":
+        result = divideNumber(numberOne, numberTwo);
+        if (numberOne === 0 || numberTwo === 0) {
+          display.textContent = "Cannot divide by 0";
+          return;
+        }
+
+        display.textContent = `${result}`;
+        displayvalue = `${result}`;
+        break;
+
+      default:
+        break;
+    }
   }
 
-  if(!numberOne || !numberTwo) {
-    display.textContent = `Please enter only one number. Before an operator and after an operator`
+  if (isNaN(numberOne) || isNaN(numberTwo)) {
+    display.textContent = `Please enter only one number. Before an operator and after an operator`;
   }
 };
 
