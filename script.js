@@ -23,9 +23,11 @@ changeTheme.addEventListener("click", () => {
 
   if (isChanged === false) {
     mainContainer.style.backgroundColor = mainBackground[randomBackground];
+    mainContainer.style.transition = "0.5s";
     isChanged = true;
   } else {
     mainContainer.style.backgroundColor = "hsl(222, 26%, 31%)";
+    mainContainer.style.transition = "0.5s";
     isChanged = false;
   }
 });
