@@ -82,7 +82,7 @@ const operation = () => {
   }
 
   if(!numberOne || !numberTwo) {
-    display.textContent = `You can only have 2 numbers`
+    display.textContent = `Please enter only one number. Before an operator and after an operator`
   }
 };
 
